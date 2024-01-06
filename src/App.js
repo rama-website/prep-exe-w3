@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AvatarGenerator from './components/AvatarGenerator';
+import useWindowSize from './components/WindowSizeHook';
 
-function App() {
+const App = () => {
+  const isBigScreen = useWindowSize(1001, Infinity);
+  const isMediumScreen = useWindowSize(701, 1000);
+  const isSmallScreen = useWindowSize(0, 700);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isBigScreen && <AvatarGenerator type="Mithi" />}
+      {isMediumScreen && <AvatarGenerator type="Diana" />}
+      {isSmallScreen && <AvatarGenerator type="Mikong" />}
     </div>
   );
-}
+};
 
 export default App;
+
